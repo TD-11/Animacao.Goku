@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Jogador : MonoBehaviour
@@ -46,17 +47,28 @@ public class Jogador : MonoBehaviour
         {
             anim.SetBool("EstarAndando", false);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && noChao)
+        
+        if (Input.GetKey(KeyCode.Space) && noChao)
         {
             anim.SetBool("EstarPulando", true);
+            anim.SetBool("EstarAndando", false);
+            
             rig.velocity = Vector2.up * velocidade;
             noChao = false;
-
+        }
+        else if(noChao == true)
+        {
+            anim.SetBool("EstarPulando", false);
+        }
+        
+        if (Input.GetKey(KeyCode.L))
+        {
+            anim.SetBool("EstarAtacando", true);
+            
         }
         else
         {
-            anim.SetBool("EstarPulando", false);
+            anim.SetBool("EstarAtacando", false);
         }
 
     }
